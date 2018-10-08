@@ -1,0 +1,31 @@
+<launch>
+  <!--
+  <arg name="map_name" default="map_5x5.png"/>
+  <arg name="goal_x" default="3"/>
+  <arg name="goal_y" default="2"/>
+  -->
+  <arg name="map_name" default="sparse_map_100x40.png"/>
+  <arg name="goal_x" default="95"/>
+  <arg name="goal_y" default="34"/>
+
+  <arg name="map_resolution" default="0.2"/>
+  <arg name="fixed_frame_id" default="map"/>
+  <arg name="robot_frame_id" default="robot"/>
+
+  <group ns="simulator">
+    <node pkg="path_planning_2d" type="astar_path_planning_2d_node"
+      name="path_planner" output="screen">
+      <param name="map_path" type="str"
+        value="$(find path_planning_2d)/maps/$(arg map_name)"/>
+      <param name="discount_factor" type="double" value="0.95"/>
+      <param name="map_resolution" type="double" value="$(arg map_resolution)"/>
+      <param name="fixed_frame_id" type="string" value="$(arg fixed_frame_id)"/>
+      <param name="robot_frame_id" type="string" value="$(arg robot_frame_id)"/>
+      <param name="goal_x" type="int" value="$(arg goal_x)"/>
+      <param name="goal_y" type="int" value="$(arg goal_y)"/>
+
+      <remap from="~belief" to="dummy_simulator/belief"/>
+    </node>
+  </group>
+
+</launch>

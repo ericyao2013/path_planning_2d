@@ -1,0 +1,43 @@
+<launch>
+  <!--
+  <arg name="map_name" default="map_5x5.png"/>
+  <arg name="start_x" default="1"/>
+  <arg name="start_y" default="2"/>
+  <arg name="goal_x" default="3"/>
+  <arg name="goal_y" default="2"/>
+  -->
+  <arg name="map_name" default="sparse_map_100x40.png"/>
+  <arg name="start_x" default="11"/>
+  <arg name="start_y" default="6"/>
+  <arg name="goal_x" default="95"/>
+  <arg name="goal_y" default="34"/>
+
+  <arg name="map_resolution" default="0.2"/>
+  <arg name="fixed_frame_id" default="map"/>
+  <arg name="robot_frame_id" default="robot"/>
+
+
+  <group ns="simulator">
+    <node pkg="dummy_simulator" type="dummy_simulator_node"
+      name="dummy_simulator" output="screen">
+
+      <param name="map_path" type="str"
+        value="$(find path_planning_2d)/maps/$(arg map_name)"/>
+
+      <param name="fixed_frame_id" type="str" value="$(arg fixed_frame_id)"/>
+      <param name="robot_frame_id" type="str" value="$(arg robot_frame_id)"/>
+      <param name="timer_freq" type="double" value="0.3"/>
+      <param name="map_resolution" type="double" value="$(arg map_resolution)"/>
+      <param name="start_x" type="int" value="$(arg start_x)"/>
+      <param name="start_y" type="int" value="$(arg start_y)"/>
+      <param name="goal_x" type="int" value="$(arg goal_x)"/>
+      <param name="goal_y" type="int" value="$(arg goal_y)"/>
+      <param name="discount_factor" type="double" value="0.95"/>
+
+      <remap from="~control_input" to="path_planner/control"/>
+      <remap from="~reset_search_tree" to="path_planner/reset_search_tree"/>
+    </node>
+  </group>
+
+</launch>
+

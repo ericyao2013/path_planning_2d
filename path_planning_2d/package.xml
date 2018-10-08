@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>path_planning_2d</name>
+  <version>0.0.0</version>
+  <description>Path planning algorithms on a 2-D map.</description>
+
+  <maintainer email="sunke.polyu@gmail.com">Ke Sun</maintainer>
+  <author email="sunke.polyu@gmail.com">Ke Sun</author>
+  <license>General Public License V3.0</license>
+
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>roscpp</depend>
+  <depend>std_msgs</depend>
+  <depend>std_srvs</depend>
+  <depend>nav_msgs</depend>
+  <depend>visualization_msgs</depend>
+  <depend>dummy_simulator</depend>
+
+
+  <export>
+
+  </export>
+</package>
